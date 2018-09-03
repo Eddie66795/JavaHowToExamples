@@ -11,17 +11,22 @@ import javax.xml.validation.Validator;
 import org.xml.sax.SAXException;
 
 public class XSDValidator {
-    public static void main(String[] args) {
-        if(args.length !=2){
-            System.out.println("Usage : XSDValidator <file-name.xsd> <file-name.xml>" );
-        } else {
-            boolean isValid = validateXMLSchema(args[0],args[1]);
 
-            if(isValid){
-                System.out.println(args[1] + " is valid against " + args[0]);
-            } else {
-                System.out.println(args[1] + " is not valid against " + args[0]);
-            }
+    public static void main(String[] args) {
+        new XSDValidator();
+    }
+
+
+    public XSDValidator() {
+
+        String xsdPath = "";
+        String xmlPath = "";
+
+        boolean isValid = validateXMLSchema(xsdPath, xmlPath);
+        if(isValid) {
+            System.out.println("VALID!");
+        } else {
+            System.out.println("NOT VALID!");
         }
     }
 
@@ -41,6 +46,5 @@ public class XSDValidator {
         }
 
         return true;
-
     }
 }
