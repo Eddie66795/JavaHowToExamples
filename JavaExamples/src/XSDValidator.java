@@ -1,9 +1,7 @@
 import java.io.File;
 import java.io.IOException;
-
 import javax.xml.XMLConstants;
 import javax.xml.transform.stream.StreamSource;
-
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
@@ -12,21 +10,28 @@ import org.xml.sax.SAXException;
 
 public class XSDValidator {
 
+    private final String XSD = "/Users/Eduard/RubymineProjects/JavaHowToExamples/JavaExamples/resources/students.xsd";
+    private final String XML = "/Users/Eduard/RubymineProjects/JavaHowToExamples/JavaExamples/resources/students.xml";
+
     public static void main(String[] args) {
         new XSDValidator();
     }
 
+    public boolean fileExist(String fileLocation) {
+        File file = new File(fileLocation);
+        return file.exists();
+    }
 
     public XSDValidator() {
-
-        String xsdPath = "";
-        String xmlPath = "";
-
-        boolean isValid = validateXMLSchema(xsdPath, xmlPath);
-        if(isValid) {
-            System.out.println("VALID!");
+        if(fileExist(XSD) && fileExist(XML)) {
+            boolean isValid = validateXMLSchema(XSD, XML);
+            if(isValid) {
+                System.out.println("VALID!");
+            } else {
+                System.out.println("NOT VALID!");
+            }
         } else {
-            System.out.println("NOT VALID!");
+            System.out.println("FILE NOT FOUND");
         }
     }
 
