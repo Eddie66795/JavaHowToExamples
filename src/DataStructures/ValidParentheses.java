@@ -5,7 +5,6 @@ import java.util.Stack;
 public class ValidParentheses {
 
     public static void main(String[] args) {
-
         String input = "";
         new ValidParentheses().isValid(input);
     }
@@ -19,22 +18,22 @@ public class ValidParentheses {
     public final Character OPEN_BR = '[';
     public final Character CLOSE_BR = ']';
 
-    public boolean isValid(String s) {
-        if(s == null || s.length() == 0) {
+    public boolean isValid(String input) {
+        if (input == null || input.length() == 0) {
             return false;
-        } else if(s == "") {
+        } else if (input == "") {
             return true;
-        } else if(s.length() % 2 != 0) {
+        } else if (input.length() % 2 != 0) {
             return false;
-        } else if( isClosed(s.charAt(0))) {
+        } else if (isClosed(input.charAt(0))) {
             return false;
         }
 
         Stack<Character> temp = new Stack<Character>();
-        for(int i = 0; i < s.length(); i++) {
-            Character inputChar = s.charAt(i);
-            if(isOpen(inputChar) || isClosed(inputChar)) {
-                if(isOpen(inputChar)) {
+        for (int i = 0; i < input.length(); i++) {
+            Character inputChar = input.charAt(i);
+            if (isOpen(inputChar) || isClosed(inputChar)) {
+                if (isOpen(inputChar)) {
                     temp.push(inputChar);
                 } else {
                     Character popped = temp.pop();
@@ -50,9 +49,9 @@ public class ValidParentheses {
     }
 
     public Character getOpposite(Character inputChar) {
-        if(inputChar == CLOSE_P) {
+        if (inputChar == CLOSE_P) {
             return OPEN_P;
-        } else if(inputChar == CLOSE_B) {
+        } else if (inputChar == CLOSE_B) {
             return OPEN_B;
         } else {
             return OPEN_BR;
@@ -60,14 +59,14 @@ public class ValidParentheses {
     }
 
     public boolean isOpen(Character input) {
-        if(input == OPEN_B || input == OPEN_BR || input == OPEN_P) {
+        if (input == OPEN_B || input == OPEN_BR || input == OPEN_P) {
             return true;
         }
         return false;
     }
 
     public boolean isClosed(Character input) {
-        if(input == CLOSE_B || input == CLOSE_BR || input == CLOSE_P) {
+        if (input == CLOSE_B || input == CLOSE_BR || input == CLOSE_P) {
             return true;
         }
         return false;
